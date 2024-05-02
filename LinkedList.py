@@ -28,18 +28,19 @@ class LinkedList:
         try:
             index = int(input('Enter the index of the item to remove: '))
             #check if the index passed is within the range
-            if index > self.lengthOf() or index<0:
+            if index >= self.lengthOf() or index<0:
                 return None
             elif index == 0:
                 self.head = self.head.next
             else:
                 i=0
+                current_node = self.head
                 while i<index:
                     previous = current_node
                     current_node = current_node.next
                     i+=1
-                previous.next = current_node.next
-                current_node.next = None
+            previous.next = current_node.next
+            current_node.next = None
         except ValueError:
             print('Index must be a number')
             return None
@@ -51,7 +52,7 @@ class LinkedList:
         while current.next != None:
             nodesVisited += 1
             current = current.next
-        print(nodesVisited)
+        return nodesVisited
     
     def display(self):
         'method to display list'
@@ -62,11 +63,18 @@ class LinkedList:
             myList.append(current.data)
         print(myList)
 
+    def searcher(self):
+        '''method to search for items in a list'''
+        search = int(input('Enter the number you want to search for: '))
+         
+
 listy = LinkedList()
 listy.appender(5)
 listy.appender(9)
 listy.appender(15)
 listy.appender(75)
 listy.display()
-listy.lengthOf()
+print(listy.lengthOf())
 listy.extractor()
+listy.display()
+listy.searcher()
